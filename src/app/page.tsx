@@ -1,3 +1,7 @@
+"use client";
+
+import { signIn } from "next-auth/react";
+
 export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center mt-5 gap-6">

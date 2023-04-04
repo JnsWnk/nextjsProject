@@ -7,6 +7,7 @@ import { authOptions } from "@/lib/auth";
 
 const Navbar = async ({}) => {
   const session = await getServerSession(authOptions);
+
   return (
     <div className="px-20 border-b-1 shadow-md">
       <div className="flex justify-between">
