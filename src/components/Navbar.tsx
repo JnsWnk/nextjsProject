@@ -3,9 +3,10 @@ import Link from "next/link";
 import SignInButton from "./SignInButton";
 import SignOutButton from "./SignOutButton";
 import ThemeProvider from "./ThemeProvider";
+import { authOptions } from "@/lib/auth";
 
 const Navbar = async ({}) => {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   return (
     <div className="px-20 border-b-1 shadow-md">
       <div className="flex justify-between">
@@ -31,7 +32,7 @@ const Navbar = async ({}) => {
             Home
           </Link>
           <Link
-            href="/"
+            href="/about"
             className="px-5 py-5 text-gray-600 hover:text-gray-400"
           >
             About
@@ -44,7 +45,7 @@ const Navbar = async ({}) => {
           </Link>
         </div>
         <div className="flex items-center gap-2">
-          <ThemeProvider className=""></ThemeProvider>
+          <ThemeProvider></ThemeProvider>
           <div className="flex bg-slate-700 text-slate-200 rounded px-3 py-2 hover:bg-slate-600 hover:text-slate-100">
             <>{session ? <SignOutButton /> : <SignInButton />}</>
           </div>
