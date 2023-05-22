@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const SignOutButton = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const signOut = async () => {
+  const handleSignOut = async () => {
     setIsLoading(true);
 
     try {
@@ -15,11 +15,13 @@ const SignOutButton = () => {
       toast("Signed out successfully", { type: "success" });
     } catch {
       toast("Error signing out", { type: "error" });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <button onClick={signOut} disabled={isLoading}>
+    <button onClick={handleSignOut} disabled={isLoading}>
       Sign Out
     </button>
   );
