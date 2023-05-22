@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SignInButton from "./SignInButton";
+import SignInButton from "./GoogleSignIn";
 import SignOutButton from "./SignOutButton";
 import ThemeProvider from "./ThemeProvider";
 import { getCurrentUser } from "@/lib/session";
@@ -57,7 +57,9 @@ const Navbar = async ({}) => {
             </div>
           )}
           <div className="flex bg-slate-700 text-slate-200 rounded px-3 py-2 hover:bg-slate-600 hover:text-slate-100">
-            <>{user ? <SignOutButton /> : <SignInButton />}</>
+            <>
+              {user ? <SignOutButton /> : <Link href="/login"> Sign In </Link>}
+            </>
           </div>
         </div>
       </div>
