@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-slate-50 dark:bg-slate-950">
         <Providers>
           <Toaster />
           {/* @ts-expect-error Server Component */}

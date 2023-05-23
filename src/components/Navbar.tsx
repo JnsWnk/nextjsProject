@@ -8,12 +8,12 @@ const Navbar = async ({}) => {
   const user = await getCurrentUser();
 
   return (
-    <div className="px-20 border-b-1 shadow-md">
+    <div className="px-20 border-b border-slate-400 text-slate-950 dark:text-slate-400">
       <div className="flex justify-between">
         <div className="flex gap-8">
           <Link
             href="/"
-            className="flex gap-1 px-5 py-5 text-gray-600 hover:text-gray-400 font-bold"
+            className="flex gap-1 px-5 py-5 hover:text-gray-400 font-bold"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,16 +31,10 @@ const Navbar = async ({}) => {
             </svg>
             Home
           </Link>
-          <Link
-            href="/about"
-            className="px-5 py-5 text-gray-600 hover:text-gray-400"
-          >
+          <Link href="/about" className="px-5 py-5 hover:text-gray-400">
             About
           </Link>
-          <Link
-            href="/"
-            className="px-5 py-5 text-gray-600 hover:text-gray-400"
-          >
+          <Link href="/" className="px-5 py-5 hover:text-gray-400">
             Api
           </Link>
         </div>
