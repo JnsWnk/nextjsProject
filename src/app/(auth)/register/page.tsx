@@ -1,21 +1,36 @@
 "use client";
 
 import GoogleSignIn from "@/components/GoogleSignIn";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    signIn("credentials", {
-      email,
-      password,
-      callbackUrl: "/",
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        name,
+      }),
     });
+    const json = await response.json();
+    if (response.ok && json) {
+      toast.success("Account created successfully");
+      redirect("/login");
+    } else {
+      toast.error(json.message);
+    }
   };
 
   return (
@@ -29,6 +44,23 @@ const Login = () => {
       <div className="flex flex-col gap-6">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2">
+            <div className="flex">
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only"
+                htmlFor="name"
+              >
+                Name
+              </label>
+              <input
+                className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                id="name"
+                placeholder="Your Username"
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
             <div className="flex">
               <label
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only"
@@ -67,7 +99,7 @@ const Login = () => {
               type="submit"
               className="font-semibold text-lg p-2 bg-slate-800 text-white dark:bg-white dark:text-slate-800 hover:bg-slate-600 dark:hover:bg-slate-300 rounded-md"
             >
-              Sign In
+              Register
             </button>
           </div>
         </form>
@@ -79,13 +111,13 @@ const Login = () => {
         <GoogleSignIn />
       </div>
       <Link
-        href="/register"
-        className="underline text-slate-600 dark:text-slate-400 hover:text-slate-300 dark:hover:text-slate-100 text-sm text-center"
+        href="/login"
+        className="underline text-slate-600 dark:text-slate-400 hover:text-slate-100 text-sm text-center"
       >
-        Dont have an account? Sign up
+        Back to login
       </Link>
     </div>
   );
 };
 
-export default Login;
+export default Register;

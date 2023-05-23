@@ -46,6 +46,13 @@ model User {
   sessions      Session[]
 }
 
+model CredentialUser {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  password      String
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique
