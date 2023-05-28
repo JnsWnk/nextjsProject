@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SignInButton from "./GoogleSignIn";
 import SignOutButton from "./SignOutButton";
 import ThemeProvider from "./ThemeProvider";
 import { getCurrentUser } from "@/lib/session";
@@ -8,7 +7,7 @@ const Navbar = async ({}) => {
   const user = await getCurrentUser();
 
   return (
-    <div className="px-20 border-b border-slate-400 text-slate-950 dark:text-slate-400">
+    <div className="px-52 border-b border-slate-400 text-slate-950 dark:text-slate-400">
       <div className="flex justify-between">
         <div className="flex gap-8">
           <Link
