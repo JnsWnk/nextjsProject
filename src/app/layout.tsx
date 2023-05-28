@@ -1,7 +1,12 @@
 import Providers from "../components/Providers";
 import Navbar from "../components/Navbar";
 import "../styles/globals.css";
-import Toaster from "../components/Toaster";
+import { Inter as FontSans } from "next/font/google";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata = {
   title: "NextJs Project",
@@ -17,10 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-50 dark:bg-slate-950">
         <Providers>
-          <Toaster />
           {/* @ts-expect-error Server Component */}
           <Navbar />
-          <main>{children}</main>
+          {children}
         </Providers>
       </body>
     </html>
