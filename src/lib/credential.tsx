@@ -6,7 +6,7 @@ const salt = bcrypt.genSaltSync(10);
 export async function signUp() {}
 
 export async function login(email: string, password: string) {
-  const user = await db.credentialUser.findFirst({
+  const user = await db.user.findFirst({
     where: {
       email: email,
     },

@@ -10,7 +10,10 @@ export default async function Register(
 ) {
   if (req.method === "POST") {
     const newUser = req.body;
-    const user = await db.credentialUser.findFirst({
+    if (!newUser.image) {
+      newUser.image = "https://i.imgur.com/73hZDYK.png";
+    }
+    const user = await db.user.findFirst({
       where: {
         email: newUser.email,
       },
@@ -25,7 +28,7 @@ export default async function Register(
     }
 
     newUser.password = await bcrypt.hash(newUser.password, salt);
-    await db.credentialUser.create({
+    await db.user.create({
       data: newUser,
     });
 

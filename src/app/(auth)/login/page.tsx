@@ -6,13 +6,13 @@ import Link from "next/link";
 import { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     signIn("credentials", {
-      email,
+      username,
       password,
       callbackUrl: "/",
     });
@@ -23,7 +23,7 @@ const Login = () => {
       <div className="flex flex-col gap-4 text-center">
         <h1 className="text-3xl font-semibold ">Welcome</h1>
         <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
-          Use your email or google account to sign in
+          Use your username or google account to sign in
         </p>
       </div>
       <div className="flex flex-col gap-6">
@@ -32,17 +32,17 @@ const Login = () => {
             <div className="flex">
               <label
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 sr-only"
-                htmlFor="email"
+                htmlFor="username"
               >
                 Email
               </label>
               <input
                 className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                id="email"
+                id="username"
                 placeholder="name@example.com"
-                type="email"
-                name="email"
-                value={email}
+                type="username"
+                name="username"
+                value={username}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
