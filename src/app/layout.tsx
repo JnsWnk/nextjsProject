@@ -1,11 +1,12 @@
 import Providers from "../components/Providers";
 import Navbar from "../components/Navbar";
 import "../styles/globals.css";
-import { Inter as FontSans } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
 
-const fontSans = FontSans({
+const roboto = Roboto_Mono({
   subsets: ["latin"],
-  variable: "--font-sans",
+  display: "swap",
+  variable: "--font-roboto-mono",
 });
 
 export const metadata = {
@@ -19,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-slate-50 dark:bg-slate-950">
+    <html className={`${roboto.variable}`} lang="en">
+      <body className={`bg-slate-50 dark:bg-slate-950`}>
         <Providers>
           {/* @ts-expect-error Server Component */}
           <Navbar />
