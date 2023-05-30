@@ -40,7 +40,7 @@ const EditProfile = (props: User) => {
             defaultValue={props.name}
             className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-slate-900"
           />
-          <Button children={"Save"} />
+          <Button>Save</Button>
         </div>
       </form>
     </div>
